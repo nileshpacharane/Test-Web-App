@@ -1,0 +1,54 @@
+<div class="container">
+  <form [formGroup]="userForm" (ngSubmit)="addUpdateUser()">
+    <div class="form-group">
+      <label for="firstname">First Name:</label>
+      <input type="text" formControlName="firstname" class="form-control" id="firstname" placeholder="Enter first name"
+        name="firstname" required>
+    </div>
+    <div *ngIf="userFormControl.firstname.touched && userFormControl.firstname.invalid" class="alert alert-danger">
+      <div *ngIf="userFormControl.firstname.errors.required">First name is required.</div>
+    </div>
+    <div class="form-group">
+      <label for="lastname">Last Name:</label>
+      <input type="text" formControlName="lastname" class="form-control" id="lastname" placeholder="Enter last name"
+        name="lastname" required>
+    </div>
+    <div *ngIf="userFormControl.lastname.touched && userFormControl.lastname.invalid" class="alert alert-danger">
+      <div *ngIf="userFormControl.lastname.errors.required">Last name is required.</div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" formControlName="email" class="form-control" id="email" placeholder="Enter email" name="email"
+        required>
+    </div>
+    <div *ngIf="userFormControl.email.touched && userFormControl.email.invalid" class="alert alert-danger">
+      <div *ngIf="userFormControl.email.errors.required">Email is required.</div>
+      <div *ngIf="userFormControl.email.errors.email">Enter valid email id.</div>
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone Number:</label>
+      <input type="tel" formControlName="phonenumber" class="form-control" id="phone" placeholder="Enter phone number"
+        name="phone" required>
+    </div>
+    <div *ngIf="userFormControl.phonenumber.touched && userFormControl.phonenumber.invalid" class="alert alert-danger">
+      <div *ngIf="userFormControl.phonenumber.errors.required">Mobile Number is required.</div>
+      <div *ngIf="userFormControl.phonenumber.errors.pattern">Please, Enter 10 digit Mobile Number.</div>
+    </div>
+    <div class="form-group">
+      <label for="profile">Upload Image:</label>
+      <input type="file" (change)="onImagePick($event)" class="form-control" id="profile" name="profile" required>
+      <div class="image-preview" *ngIf="imagePreview">
+        <img [src]="imagePreview" alt="Avtar" style="width:30vh;height: 30vh;">
+      </div>
+    </div>
+
+    <div style="margin-top: 5px;">
+      <button type="submit" *ngIf="!isEdit" class="btn btn-info btn-lg" [disabled]="!userForm.valid">Submit</button>
+      <button type="submit" *ngIf="isEdit" class="btn btn-info btn-lg" [disabled]="!userForm.valid">Update</button>
+
+      <button style="float: right;" type="button" class="btn btn-info btn-lg" [routerLink]="[ '/list']">Cancel </button>
+
+    </div>
+
+  </form>
+</div>

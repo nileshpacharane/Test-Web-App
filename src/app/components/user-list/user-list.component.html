@@ -1,0 +1,30 @@
+<div class="container">
+  <h2>User List</h2>
+  <button style="margin: 10px;float: right;" type="button" class="btn btn-info btn-lg" [routerLink]="[ '/adduser']">Add
+    User</button>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>Phone No</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userList">
+        <td>{{user.firstname}}</td>
+        <td>{{user.lastname}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.phonenumber}}</td>
+        <td>
+          <button type="button" class="btn btn-info" (click)="viewUser(user)">View</button>
+          <button type="button" class="btn btn-warning" (click)="editUser(user)">Edit</button>
+          <button type="button" class="btn btn-danger" (click)="deleteUser(user)">Delete</button>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
